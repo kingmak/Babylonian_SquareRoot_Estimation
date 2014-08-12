@@ -8,31 +8,41 @@ public class BabylonianSqrtEstimate {
 		
 		DecimalFormat Decimal = new DecimalFormat("#.0000000000");
 		Scanner Input = new Scanner(System.in);
-		double Guess, Num, Perfect;
+		double Guess, Num, Perfect, Old;		
+		String OutString = "";
 		int Count = 0;
 		
 		System.out.print("The Number to Square Root: ");
-		Num = Double.parseDouble(Input.nextLine());
+		Num = Double.parseDouble(Input.nextLine());		
 		if (Num < 0) {
 			System.out.println("Your Number Cannot be Less Then Zero");
 			System.exit(-1);	
 		}
 		
-		System.out.print("\nInitial Guess: ");
+		System.out.print("Initial Guess: ");
 		Guess = Double.parseDouble(Input.nextLine());
-		if (Guess <= 0) {
-			System.out.println("Your Guess Cannot be Less Then or Equal Zero");
+		Old = Guess;
+		if (Guess == 0) {
+			System.out.println("Your Guess Cannot be Zero");
 			System.exit(-1);
+		}
+		if (Guess < 0) {
+			Guess = Math.abs(Guess);
 		}
 		
 		Perfect = Math.sqrt(Num);
 		while (Guess != Perfect) {
-			Guess = (((Num / Guess) + Guess) / 2);
+			Guess = ((Num / Guess) + Guess) / 2;
 			Count += 1;
 		}
-		
-		System.out.printf("According to the Babylonians Sqrt(%s) = %s (%d cycles)", 
-				          Decimal.format(Num), Decimal.format(Guess), Count);
+
+		if (Old > 0) {
+			OutString = "%nAccording to the Babylonians Sqrt(%s) = %s (%d cycles)";
+		}
+		if (Old < 0) {
+			OutString = "%nAccording to the Babylonians Sqrt(%s) = -%s (%d cycles)";
+		}
+		System.out.printf(OutString, Decimal.format(Num), Decimal.format(Guess), Count);
 		Input.close();
 	}
 }
