@@ -1,5 +1,4 @@
 Babylonian_SquareRoot_Estimation
 ================================
 
-Babylonian Square Root Estimation implemented in Java.
-// a comment for Nabeel
+Babylonian Square Root Estimation implemented in Java
